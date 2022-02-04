@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://shaders/volumetric_clouds.shader" type="Shader" id=1]
+[ext_resource path="res://scripts/cloud_container_script.gd" type="Script" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 10, 3, 10 )
+subdivide_width = 5
+subdivide_height = 5
+subdivide_depth = 5
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/NUM_STEPS = 4
+shader_param/CLOUD_COLOR = Color( 1.74, 1, 2.89, 1 )
+shader_param/OFFSET = Vector3( 2.02, 0, 0 )
+shader_param/OFFSET_2 = null
+shader_param/CLOUD_SCALE_1 = 0.303
+shader_param/CLOUD_SCALE_2 = 0.898
+shader_param/DETAIL_WEIGHT = 0.555
+shader_param/STRENGTH = 25.0
+shader_param/DENSITY_THRESHOLD = 0.659
+shader_param/LIGHT_ABSORBED_THROUGH_CLOUD = 0.185
+shader_param/LIGHT_ABSORBED_TOWARDS_SUN = 2.055
+shader_param/DARKNESS_THRESHOLD = 1.0
+shader_param/CONTAINER_EDGE_FADEOUT_START = 0.856
+shader_param/CONTAINER_EDGE_FADEOUT_SIZE = 8.368
+shader_param/SUN_POSITION = Vector3( 0, 100, 0 )
+shader_param/BOUND_MIN = Vector3( -5, -1.5, -5 )
+shader_param/BOUND_MAX = Vector3( 5, 1.5, 5 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 1 )
+shader_param/NUM_STEPS = 4
+shader_param/CLOUD_COLOR = Color( 2, 1, 1, 1 )
+shader_param/OFFSET = Vector3( 2.02, 0, 0 )
+shader_param/OFFSET_2 = null
+shader_param/CLOUD_SCALE_1 = 0.537
+shader_param/CLOUD_SCALE_2 = 1.827
+shader_param/DETAIL_WEIGHT = 0.419
+shader_param/STRENGTH = 25.0
+shader_param/DENSITY_THRESHOLD = 0.701
+shader_param/LIGHT_ABSORBED_THROUGH_CLOUD = 0.185
+shader_param/LIGHT_ABSORBED_TOWARDS_SUN = 2.055
+shader_param/DARKNESS_THRESHOLD = 1.0
+shader_param/CONTAINER_EDGE_FADEOUT_START = 0.856
+shader_param/CONTAINER_EDGE_FADEOUT_SIZE = 8.368
+shader_param/SUN_POSITION = Vector3( 0, -100, 0 )
+shader_param/BOUND_MIN = Vector3( -5, -1.5, -5 )
+shader_param/BOUND_MAX = Vector3( 5, 1.5, 5 )
+
+[node name="scene_!" type="Spatial"]
+
+[node name="volemetric_cloud" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+script = ExtResource( 2 )
+
+[node name="volemetric_cloud2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.31892, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+script = ExtResource( 2 )
